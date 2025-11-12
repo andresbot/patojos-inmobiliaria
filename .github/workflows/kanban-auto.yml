@@ -1,0 +1,31 @@
+name: 🚀 Kanban Automations
+
+on:
+  issues:
+    types: [opened, reopened, closed]
+  pull_request:
+    types: [opened, ready_for_review, closed]
+
+jobs:
+  move_issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mover Issue a "To Do" cuando se crea
+        uses: peter-evans/create-or-update-project-card@v3
+        with:
+          project-name: "Kanban - Patojos Inmobiliaria MVP"
+          column-name: "To Do"
+          issue-number: ${{ github.event.issue.number }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+  move_prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mover PR a "In Review / QA" cuando se marca como listo
+        if: github.event.action == 'ready_for_review'
+        uses: peter-evans/create-or-update-project-card@v3
+        with:
+          project-name: "Kanban - Patojos Inmobiliaria MVP"
+          column-name: "In Review / QA"
+          issue-number: ${{ github.event.pull_request.number }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
