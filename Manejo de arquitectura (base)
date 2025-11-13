@@ -1,26 +1,24 @@
 patojos-inmobiliaria/
 │
-├── README.md
-├── package.json
-├── /public
-│   └── assets/          # Íconos, logos, fotos de propiedades
-│
 ├── /src
 │   ├── /components
-│   │   ├── Home/        # Módulo A: Galería de propiedades
-│   │   ├── Inventory/   # Módulo B: Búsqueda y filtros
-│   │   ├── Property/    # Módulo C: Ficha de propiedad
-│   │   ├── Leads/       # Módulo D: Formulario de contacto
-│   │   └── Responsive/  # Módulo E: Mobile-first
+│   │   ├── Home/
+│   │   ├── Inventory/
+│   │   ├── Property/
+│   │   ├── Leads/
+│   │   ├── MapView/        # 🆕 Módulo F: Mapa Interactivo (Google Maps)
+│   │   │   ├── MapContainer.jsx
+│   │   │   ├── MarkerInfo.jsx
+│   │   │   └── mapConfig.js
+│   │   └── Responsive/
 │   ├── /pages
 │   │   ├── index.jsx
-│   │   └── property/[id].jsx
+│   │   └── map.jsx         # 🆕 Página del mapa
 │   └── /styles
-│       └── globals.css
+│       └── map.css
 │
-├── /backend              # API o conexión con base de datos de leads
-│   ├── server.js
-│   └── /models
-│
-└── /docs
-    └── proyecto_patojos_inmobiliaria.pdf  # Documento base
+└── /backend
+    ├── api/
+    │   └── properties.js   # Endpoint que devuelve coordenadas e info de propiedades
+    └── db/
+        └── leadsModel.js
